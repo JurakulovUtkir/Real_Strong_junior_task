@@ -2,14 +2,11 @@ package uz.pdp.corxona_telecom.entity;
 
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import java.util.Collection;
-import java.util.UUID;
+import javax.persistence.*;
+import java.util.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,6 +28,7 @@ public class User implements UserDetails {
     private Company company;
 
     @Column(nullable = false)
+    //@ElementCollection(fetch = FetchType.LAZY)
     private String role;
 
     private boolean accountNonExpired = true;
@@ -45,7 +43,11 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<GrantedAuthority> list = new ArrayList<>();
+        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(role);
+        list.add(grantedAuthority);
+       // List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>((Collection<? extends GrantedAuthority>) grantedAuthority);
+        return  list;
     }
 
 

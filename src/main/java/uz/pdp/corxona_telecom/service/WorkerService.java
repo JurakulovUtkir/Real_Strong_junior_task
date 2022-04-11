@@ -9,9 +9,9 @@ import uz.pdp.corxona_telecom.entity.User;
 import uz.pdp.corxona_telecom.entity.Worker;
 import uz.pdp.corxona_telecom.payload.ApiResponse;
 import uz.pdp.corxona_telecom.payload.WorkerDto;
-import uz.pdp.corxona_telecom.repository.AddressRepository;
-import uz.pdp.corxona_telecom.repository.CompanyRepository;
-import uz.pdp.corxona_telecom.repository.WorkerRepository;
+import uz.pdp.corxona_telecom.security.repository.AddressRepository;
+import uz.pdp.corxona_telecom.security.repository.CompanyRepository;
+import uz.pdp.corxona_telecom.security.repository.WorkerRepository;
 
 import java.util.List;
 import java.util.Optional;

@@ -2,14 +2,19 @@ package uz.pdp.corxona_telecom.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 import uz.pdp.corxona_telecom.payload.ApiResponse;
 import uz.pdp.corxona_telecom.payload.CompanyDto;
 import uz.pdp.corxona_telecom.service.CompanyService;
 
 import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @RestController
@@ -36,7 +41,7 @@ public class CompanyController {
      * @param dto
      * @return
      */
-    @PreAuthorize(value = "hasAnyRole(admin)")
+    @PreAuthorize(value = "hasAuthority('admin')")
     @PostMapping("/add")
     public HttpEntity<?> add(@Valid @RequestBody CompanyDto dto) {
         ApiResponse apiResponse = companyService.add(dto);
@@ -68,6 +73,18 @@ public class CompanyController {
         return ResponseEntity.status(apiResponse.isSuccess() ? 200 : 409).body(apiResponse);
     }
 
-
+    // xatolik bo'lsa requiredlarni ko'rsatadi
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String, String> handleValidationExceptions(
+            MethodArgumentNotValidException ex) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getAllErrors().forEach((error) -> {
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName, errorMessage);
+        });
+        return errors;
+    }
 
 }

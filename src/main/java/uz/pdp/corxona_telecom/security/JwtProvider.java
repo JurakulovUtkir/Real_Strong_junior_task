@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 import java.util.Date;
 
 @Component
-public class JwtProvider {
+public class JwtProvider {  // jwt token ustida amal bajaradigan class
     private static final long expiration = 1000*60*60*24;
     private static final String secretKey = "qwertyuiopplmnbv";
 
@@ -42,6 +42,29 @@ public class JwtProvider {
             e.printStackTrace();
         }
         return null;
+    }
+
+
+    public boolean validateToken(String token){  // bu o'zi tokenmi ? ha : yo'q
+        try {
+            Jwts.parser()
+                    .setSigningKey(secretKey)
+                    .parseClaimsJws(token)
+                    .getBody();
+            return true;
+        } catch (ExpiredJwtException e) {
+            e.printStackTrace();
+        } catch (UnsupportedJwtException e) {
+            e.printStackTrace();
+        } catch (MalformedJwtException e) {
+            e.printStackTrace();
+        } catch (SignatureException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
 
 

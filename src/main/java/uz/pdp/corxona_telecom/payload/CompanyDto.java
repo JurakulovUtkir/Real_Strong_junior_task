@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -24,5 +25,7 @@ public class CompanyDto {
 
     private String website;
 
+    @NotNull(message = "required")
+    @Pattern(regexp = "[+]998[0-9]{9}")
     private String phoneNumber;
 }
