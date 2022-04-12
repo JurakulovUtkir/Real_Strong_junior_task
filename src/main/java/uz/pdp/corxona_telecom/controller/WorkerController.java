@@ -29,7 +29,7 @@ public class WorkerController {
      *
      * @return
      */
-    @PreAuthorize(value = "hasAnyRole(company,admin)")
+    @PreAuthorize(value = "hasAnyAuthority(company,admin)")
     @GetMapping("/list")
     public HttpEntity<?> all() {
         ApiResponse apiResponse = workerService.all();
@@ -54,7 +54,7 @@ public class WorkerController {
      * @param dto
      * @return
      */
-    @PreAuthorize(value = "hasRole(company)")
+    @PreAuthorize(value = "hasAuthority('company')")
     @PostMapping("/add")
     public HttpEntity<?> add(@Valid @RequestBody WorkerDto dto) {
         ApiResponse apiResponse = workerService.add(dto);
@@ -67,7 +67,7 @@ public class WorkerController {
      * @param dto
      * @return
      */
-    @PreAuthorize(value = "hasRole(company)")
+    @PreAuthorize(value = "hasAnyAuthority('company')")
     @PutMapping("/edit/{id}")
     public HttpEntity<?> edit(@PathVariable UUID id,@RequestBody WorkerDto dto){
         ApiResponse apiResponse = workerService.edit(id,dto);
@@ -79,7 +79,7 @@ public class WorkerController {
      * @param id
      * @return
      */
-    @PreAuthorize(value = "hasRole(company)")
+    @PreAuthorize(value = "hasAuthority('company')")
     @DeleteMapping("/delete/{id}")
     public HttpEntity<?> delete(@PathVariable UUID id){
         ApiResponse apiResponse = workerService.delete(id);

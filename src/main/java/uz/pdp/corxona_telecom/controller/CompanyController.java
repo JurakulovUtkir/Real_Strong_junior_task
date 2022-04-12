@@ -28,7 +28,7 @@ public class CompanyController {
      *
      * @return
      */
-    @PreAuthorize(value = "hasAnyRole(admin,company)")
+    @PreAuthorize(value = "hasAnyAuthority('admin','company')")
     @GetMapping("/list")
     public HttpEntity<?> all() {
         ApiResponse apiResponse = companyService.all();
@@ -55,6 +55,7 @@ public class CompanyController {
      * @param id
      * @return
      */
+    @PreAuthorize(value = "hasAnyAuthority('admin')")
     @DeleteMapping("/delete/{id}")
     public HttpEntity<?> delete(@PathVariable UUID id) {
         ApiResponse apiResponse = companyService.delete(id);
@@ -67,6 +68,7 @@ public class CompanyController {
      * @param dto
      * @return
      */
+    @PreAuthorize(value = "hasAnyAuthority('admin')")
     @PutMapping("/edit/{id}")
     public HttpEntity<?> edit(@PathVariable UUID id,@Valid@RequestBody CompanyDto dto){
         ApiResponse apiResponse = companyService.edit(id,dto);
