@@ -1,0 +1,72 @@
+body {
+
+    font-family: "Verdana";
+    font-weight: bold;
+    /*text-decoration: underline;*/
+    font-size: 20px;
+    background-color: #ffcf79;
+    /*background-image: url("image.jpg");*/
+}
+
+h1,h2 {
+    background-color: chartreuse;
+    color: black;
+    /*border: solid black 1px;*/
+    border-bottom: solid red 5px;
+
+    /*// salom berdfik*/
+    border-radius: 10px;
+}
+p.green {
+    color: green;
+    font-size: 30px;
+    font-family: "Times New Roman";
+
+}
+
+.blue {
+    color: blue;
+    font-size: 20px;
+    font-family: "Javanese Text";
+    border-bottom: black dashed 3px;
+
+}
+.underline{
+    text-decoration: underline ;
+}
+.paragraph3{
+    color: blue;
+    font-size: 22px;
+    font-style: italic;
+}
+
+.lesson15{
+font-size: 1.5em;
+}
+
+.lesson16{
+    line-height:1.5em;
+    background-color: #e5e4d7;
+    padding: 20px;
+
+    border-color: blue;
+    border-width: 2px;
+    border-style: solid;
+    margin: 20px;
+    margin-top: 20px;
+
+    background-image: url("img_2.png");
+}
+.image{
+display: block;
+    border-color: blue;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 400px;
+    width: 400px;
+    background-color: silver;
+    padding: 20px;
+}

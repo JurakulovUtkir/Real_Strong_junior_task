@@ -6,7 +6,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import uz.pdp.corxona_telecom.entity.User;
-import uz.pdp.corxona_telecom.security.repository.UserRepository;
+import uz.pdp.corxona_telecom.repository.UserRepository;
 
 @Component
 @RequiredArgsConstructor
