@@ -32,6 +32,4 @@ public class Worker {
     @ManyToOne(cascade = CascadeType.ALL)
     private Company company;
 
-
-
 }

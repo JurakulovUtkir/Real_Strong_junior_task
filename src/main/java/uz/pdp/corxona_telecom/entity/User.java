@@ -30,6 +30,11 @@ public class User implements UserDetails {
     @Column(nullable = false)
     //@ElementCollection(fetch = FetchType.LAZY)
     private String role;
+    /**
+     * relations
+     */
+    @ManyToMany(mappedBy = "users")
+    private Set<City> cities = new HashSet<>();
 
     private boolean accountNonExpired = true;
     private boolean accountNonLocked = true;
